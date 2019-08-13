@@ -49,7 +49,7 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     @property
     def state(self):
         """Return the state of the device."""
-        return self._input.num
+        return self._rx._input.num
 
     @property
     def name(self):
