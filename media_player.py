@@ -38,11 +38,14 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     def __init__(self, moip_rx):
         """Initialize MoIP Rx device."""
         self._rx = moip_rx
+        self._unique_id = 'binarymoip-tx-{}-{}'.format(
+            moip_rx.name, moip_rx.num)
 
 #    @util.Throttle(MIN_TIME_BETWEEN_SCANS, MIN_TIME_BETWEEN_FORCED_SCANS)
     def update(self):
         """Retrieve latest state of the device."""
-        self._rx._mc._update_inputs()
+        pass
+        # self._rx._mc._update_inputs()
 
     @property
     def state(self):
@@ -59,6 +62,10 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
         """Return current input of the device."""
         return self._rx._input and self._rx._input.name
 
+    def select_source(self, source):
+        """Select input source."""
+        self._rx._set_input(source)
+
     @property
     def source_list(self):
         """Return list of available inputs of the device."""
@@ -71,3 +78,8 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     def supported_features(self):
         """Flag device features that are supported."""
         return SUPPORTED_COMMANDS
+
+    @property
+    def unique_id(self):
+        """Unique ID of the receiver. TODO make this better."""
+        return self._unique_id
