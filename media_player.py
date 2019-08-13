@@ -17,9 +17,7 @@ DEVICE_NAME = 'Binary MoIP Rx'
 
 ICON = 'mdi:television'
 
-SUPPORTED_COMMANDS = {
-    SUPPORT_SELECT_SOURCE
-}
+SUPPORTED_COMMANDS = SUPPORT_SELECT_SOURCE
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
