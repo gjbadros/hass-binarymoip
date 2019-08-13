@@ -44,7 +44,7 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
 #    @util.Throttle(MIN_TIME_BETWEEN_SCANS, MIN_TIME_BETWEEN_FORCED_SCANS)
     def update(self):
         """Retrieve latest state of the device."""
-        self._rx._mc._upodate()
+        self._rx._mc._update_inputs()
 
     @property
     def state(self):
@@ -54,7 +54,7 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     @property
     def name(self):
         """Return the name of the device."""
-        return self._rx.name
+        return "moip_rx_" + self._rx.name
 
     @property
     def source(self):

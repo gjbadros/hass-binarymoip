@@ -45,4 +45,4 @@ class MoIP_Sensor_Tx(RestoreEntity):
     @property
     def name(self):
         """Return the name of the device."""
-        return self._tx.name
+        return "moip_tx_" + self._tx.name
