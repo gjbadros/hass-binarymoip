@@ -72,4 +72,4 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     @property
     def supported_features(self):
         """Flag device features that are supported."""
-        return self._supported_commands
+        return SUPPORTED_COMMANDS
