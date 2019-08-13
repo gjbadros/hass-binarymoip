@@ -1,0 +1,10 @@
+{
+  "domain": "binarymoip",
+  "name": "Binary MoIP",
+  "documentation": "https://www.home-assistant.io/components/binarymoip",
+  "requirements": [
+    "pybinarymoip==0.0.1"
+  ],
+  "dependencies": [],
+  "codeowners": []
+}
