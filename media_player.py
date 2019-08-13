@@ -59,7 +59,7 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     @property
     def source(self):
         """Return current input of the device."""
-        return self._input.name
+        return self._rx._input.name
 
     @property
     def source_list(self):
