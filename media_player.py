@@ -64,6 +64,7 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     def select_source(self, source_num):
         """Select input source."""
         self._rx.switch_to_tx(self._rx._mc._tx[source_num])
+        self.schedule_update_ha_state()
 
     @property
     def source_list(self):
