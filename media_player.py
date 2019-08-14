@@ -74,7 +74,7 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
         ai = []
         num = 1
         for t in self._rx._mc.transmitters:
-            ai.append(num + "-" + t.name)
+            ai.append("%d-%s" % (num, t.name))
             num += 1
         return ai
 
