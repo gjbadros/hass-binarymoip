@@ -61,9 +61,10 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
         """Return current input of the device."""
         return self._rx._input and self._rx._input.num
 
-    def select_source(self, source_num):
+    def select_source(self, source):
         """Select input source."""
-        _LOGGER.info("Switching to %s", source_num)
+        (source_num, rest) = source.split("-", 2)
+        _LOGGER.info("Switching to %s - #%d", source, source_num)
         self._rx.switch_to_tx(int(source_num))
         self.schedule_update_ha_state()
 
@@ -71,8 +72,10 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     def source_list(self):
         """Return list of available inputs of the device."""
         ai = []
+        num = 1
         for t in self._rx._mc.transmitters:
-            ai.append(t.name)
+            ai.append(num + "-" + t.name)
+            num += 1
         return ai
 
     @property
