@@ -46,6 +46,18 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
         """Retrieve latest state of the device."""
         self._rx._mc._update_inputs()
 
+    def tx_full_name(self, tx_num):
+        """Returns the full name of the transmitter with number tx_num.
+        This returns a string like '1-AVR'."""
+        num_transmitters = len(self._rx._mc.transmitters)
+        if tx_num > num_transmitters:
+            _LOGGER.error("tx_num = %s is too large, only %s transmitters",
+                          tx_num, num_transmitters)
+            return None
+        else:
+            tx = self._rx._mc.transmitters[tx_num-1]
+            return "%d-%s" % (tx_num, tx.name)
+
     @property
     def state(self):
         """Return the state of the device."""
@@ -59,7 +71,8 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
     @property
     def source(self):
         """Return current input of the device."""
-        return self._rx._input and self._rx._input.num
+        if self._rx._input:
+            return self.tx_full_name(self._rx._input.num)
 
     def select_source(self, source):
         """Select input source."""

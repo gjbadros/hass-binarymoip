@@ -6,12 +6,14 @@ For more details about this component, please refer to the documentation at
 https://home-assistant.io/components/binarymoip/
 """
 # import asyncio
+from datetime import timedelta
 import logging
 
 import voluptuous as vol
 
 import homeassistant.helpers.config_validation as cv
-from homeassistant.const import CONF_HOST, CONF_USERNAME, CONF_PASSWORD
+from homeassistant.const import (CONF_HOST, CONF_USERNAME,
+                                 CONF_PASSWORD, CONF_SCAN_INTERVAL)
 from homeassistant.helpers import discovery
 # from homeassistant.helpers.entity import Entity
 
@@ -20,11 +22,15 @@ DEVICES = 'binarymoip_devices'
 
 _LOGGER = logging.getLogger(__name__)
 
+# TODO: Make CONF_SCAN_INTERVAL do something
+SCAN_INTERVAL = timedelta(seconds=120)
+
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
         vol.Required(CONF_HOST): cv.string,
         vol.Optional(CONF_USERNAME): cv.string,
         vol.Optional(CONF_PASSWORD): cv.string,
+        vol.Optional(CONF_SCAN_INTERVAL, default=SCAN_INTERVAL): cv.time_period,
         })
 }, extra=vol.ALLOW_EXTRA)
 
@@ -40,6 +46,7 @@ def setup(hass, config):
     host = moip_config[CONF_HOST]
     username = moip_config.get(CONF_USERNAME)
     password = moip_config.get(CONF_PASSWORD)
+    interval = config.get(CONF_SCAN_INTERVAL) or timedelta(minutes=5)
 
     try:
         m = MoIP(host, username, password)
