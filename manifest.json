@@ -3,7 +3,7 @@
   "name": "Binary MoIP",
   "documentation": "https://www.home-assistant.io/components/binarymoip",
   "requirements": [
-    "pybinarymoip==0.0.4"
+    "pybinarymoip==0.0.6"
   ],
   "dependencies": [],
   "codeowners": []
