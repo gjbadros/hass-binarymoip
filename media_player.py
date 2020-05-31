@@ -78,7 +78,7 @@ class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
         """Select input source."""
         (source_num, rest) = source.split("-", 1)
         _LOGGER.info("Switching %s to %s - #%s", self._rx, source, source_num)
-        self._rx.switch_to_tx(int(source_num))
+        self._rx.switch_to_tx(int(source_num)-1)  # they are 0-indexed in lib
         self.schedule_update_ha_state()
 
     @property
