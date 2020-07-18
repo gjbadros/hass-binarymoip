@@ -2,7 +2,7 @@
 import logging
 
 from homeassistant.components.media_player import (
-    MediaPlayerDevice,
+    MediaPlayerEntity,
 )
 from homeassistant.components.media_player.const import (
     SUPPORT_SELECT_SOURCE,
@@ -32,7 +32,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     return True
 
 
-class MoIP_MediaPlayer_Rx(MediaPlayerDevice):
+class MoIP_MediaPlayer_Rx(MediaPlayerEntity):
     """Media Player implementation for MoIP Receiver."""
 
     def __init__(self, moip_rx):
